@@ -35,8 +35,10 @@ SSDScoreLD <- function(data) {
   }
   
   # calculate the difference between the cumulative distribution of the data (normalized by the number of cultures) and the cumulative Luria-Delbruck distribution.
-#  score =[sum((cumsum(tabdata)/cultures - actu)^2)]
+  score = sum((cumsum(tabdata)/cultures - actu)^2)
   
   # output the sum-of-the-square difference.
-  return (tabdata)
+  return (score)
+#  return (tabdata)
+  
 }
