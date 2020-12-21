@@ -1,6 +1,10 @@
 # FluctuationTest_GregLang
 These are the MATLAB scripts used for analysis of the fluctuation tests used to measure the mutation rate of S. cerevisiae as described in Lang and Murray, Genetics 2008
 
+### Comment on R ports
+The scripts were ported from the original by Toshinori Endo on 2020.12.21.
+Though reasonable care had been taken, the codes are provided as-is with no guarantee.
+
 ## findMLm
 Input: data from fluctuation assay.
 Output: most likely value of m given the data. Command: findMLm(data)
@@ -23,7 +27,7 @@ This program requires the following programs to run: generateLD, generatePO, gen
 
 ## generateLD
 Input: m, and max.
-Output: The Luria-Delbrück distribution from 0 to max with parameter m. Command: generateLD(m, max)
+Output: The Luria-Delbruck distribution from 0 to max with parameter m. Command: generateLD(m, max)
 
 ## generatePO
 Input: lambda, and max.
@@ -31,32 +35,32 @@ Output: The Poisson distribution from 0 to max with parameter lambda. Command: g
 
 ## generateTwoParam
 Input: m, d, and max.
-Output: The combined Luria-Delbrück and Poisson distribution from 0 to
+Output: The combined Luria-Delbruck and Poisson distribution from 0 to
 max with parameters m and lambda = m x d. Command: generateTwoParam(m, d, max)
 This program requires the following programs to run: generateLD, generatePO.
 
 ## sampleLD
 Input: m, number of samples.
-Output: Random variables from the Luria-Delbrück distribution with
+Output: Random variables from the Luria-Delbruck distribution with
 parameter m. Command: sampleLD(m, samples)
 This program requires the following program to run: generateLD.
 
 ## sampleTwoParam
 Input: m, number of samples.
-Output: Random variables from a combined Luria-Delbrück and Poisson
+Output: Random variables from a combined Luria-Delbruck and Poisson
 distribution with parameters m and lambda = m x d. Command: sampleTwoParam(m, d, samples)
 This program requires the following programs to run: generateLD, generatePO, generateTwoParam.
 
 ## SSDScoreLD
 Input: data from fluctuation assay.
 Output: sum of the squared differences between the cumulative distribution
-of the data and the cumulative Luria-Delbrück distribution with
+of the data and the cumulative Luria-Delbruck distribution with
 parameter m determined from the data. Command: SSDScore(data)
 This program requires the following programs to run: findMLm, scoreData, generateLD.
 
 ## SSDScoreTwoParam
 Input: data from fluctuation assay.
 Output: sum of the squared differences between the cumulative distribution
-of the data and the cumulative combined Luria-Delbrück and Poisson distribution with parameters m and lambda = m x d determined from the data.
+of the data and the cumulative combined Luria-Delbruck and Poisson distribution with parameters m and lambda = m x d determined from the data.
 Command: SSDScoreTwoParam(data)
 This program requires the following programs to run: findMLmTwoParam, scoreDataTwoParam, generateLD, generatePO, generateTwoParam.
