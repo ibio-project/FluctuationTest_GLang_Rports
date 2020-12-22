@@ -16,29 +16,29 @@
 # Lang GI, Murray AW.  Estimating the per-base-pair mutation rate in the
 # yeast, Saccharomyces cerevisiae.  Genetics.
 
-# Import "data" from user.
 SSDScoreLD <- function(data) {
   
   # find the most-likely value for "m" given the data.
-  m=findMLm(data)
+  m <- findMLm(data)
+
   # the length of the array "data" is the number of cultures counted in the fluctuation assay
-  cultures=length(data);
+  cultures <- length(data)
+  
   # the array "actu" is the cumulative Luria-Delbruck distribtuion with parameter "m".
-  actu = cumsum(generateLD(m,1000));
+  actu <- cumsum(generateLD(m,1000));
   
   # This loop converts the data from a list of the number of mutants per
   # culture to an array where the position "i+1" corresponds to the number of
   # cultures with "i" mutants.
   tabdata=c()
-  for (i in 0:(length(actu)-1)) {
+  for (i in 0:(length(actu)-1))
     tabdata[i+1]=length(data[data==i])
-  }
-  
+
   # calculate the difference between the cumulative distribution of the data (normalized by the number of cultures) and the cumulative Luria-Delbruck distribution.
-  score = sum((cumsum(tabdata)/cultures - actu)^2)
+  score = sum( (cumsum(tabdata)/cultures - actu)^2 )
   
   # output the sum-of-the-square difference.
-  return (score)
-#  return (tabdata)
+  return ( score )
+#  return ( tabdata )
   
 }

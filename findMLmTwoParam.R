@@ -33,12 +33,12 @@ findMLmTwoParam <- function(data){
         # the "ms" array the current estimate for "m" and the two adjacent values
         ms=c(m-margin, m, m+margin)
         # Using the m-file "scoreData," determine the log probability of "m" given the data
-        scores=sapply(1:3,function(x) scoreDataTwoParam(data,ms(x),d))
+        scores=sapply(1:3,function(x) scoreDataTwoParam(data,ms[x],d))
         # Maximize the score for ms<0 to remove negative m values
         # original: scores(find(ms<0))=max(scores)+1;
         scores[ms<0]=max(scores)+1;
         # Set the value for "m" to the lowest of the three scores
-        # original m=ms(find(scores==min(scores)));
+        # original: m=ms(find(scores==min(scores)));
         m=ms[scores==min(scores)]
       }
     }

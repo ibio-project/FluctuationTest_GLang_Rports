@@ -18,17 +18,20 @@ generateTwoParam <- function(m,d,max){
   
   # Generate a Luria-Delbruck distribution with parameter "m" up to "max".
   LD=generateLD(m,max)
+
   # Generate the Poisson distribution with parameter "lambda" = "m*d" up to "max".
   PO=generatePO(m*d,max)
+
   # This line of code finds all values in the Poisson dist that are so small that they register as NaN ("Not a Number") and sets them to 0.
   PO[is.nan(PO)]=0
+
   # Create an empty array "coDist".
   coDist=c()
 
   # The loop below calculates the probability distribution for the combined
   # Luria-Delbruck/Poisson.  
   for (i in 0:max)
-    coDist=rbind(coDist, LD(1:i+1) * rev(PO(1:i+1)))
-  
+    coDist=rbind(coDist, LD[1:i+1] * rev(PO[1:i+1]))
+
   return (coDist)
 }

@@ -18,15 +18,15 @@ scoreDataTwoParam <- function(data,m,d) {
   # This loop converts the data from a list of the number of mutants per
   # culture to an array where the position "i+1" corresponds to the number of
   # cultures with "i" mutants.
-  tabdata=c()
-  for (i in 0:max(data)) {
-    tabdata[i+1]=length(data[data==i])
-  }
-
+  # tabdata=c()
+  # for (i in 0:max(data)) tabdata[i+1]=length(data[data==i])
+  tabdata=sapply(0:max(data),function(x) length(data[data==x]))
+  print(length(tabdata))
   # Uses the m-file "generateTwoParam" to generate the Luria-Delbruck distribution with parameters "m" and "d" out to 100.
   dist=generateTwoParam(m,d,max(data))
+  print(length(dist))
   # Calculate the -log of the probability of observing the data
-  score=sum(-log(dist.^tabdata))
+  score=sum(-log(dist ^ tabdata))
   
   # Output the -log probability
   return (score)

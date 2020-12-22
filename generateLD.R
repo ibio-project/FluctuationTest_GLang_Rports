@@ -23,7 +23,7 @@ generateLD <- function(m, max) {
 
   for (i in 1:max) {
     x = seq(0,length(ldDist)-1)
-    ldDist = c(ldDist, m / length(x)*sum(ldDist/(length(x)-x+1)))
+    ldDist = c(ldDist, m / length(x) * sum(ldDist/(length(x)-x+1)))
   }
   
   # Output the array "ldDist"

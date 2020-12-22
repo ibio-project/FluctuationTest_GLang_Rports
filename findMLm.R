@@ -25,21 +25,21 @@ findMLm <-function (data){  #; Import data from user.
 
   #; Set the "scores" array to a trivial value which fails the below test "scores(2) > min(scores)"
   scores=c(0, 1, 0)
-  while (scores(2) > min(scores)) {
+  while (scores[2] > min(scores)) {
     #; the "ms" array the current estimate for "m" and the two adjacent values
     ms=c(m-1, m, m+1)
     ms[ms<0]=0
     # Using the m-file "scoreData," determine the log probability of "m" given the data
-    scores=c(scoreData(data,ms(1)), scoreData(data,ms(2)), scoreData(data,ms(3)))
+    scores=sapply(1:3,function(x) scoreData(data,ms[x]))
     # Set the value for "m" to the lowest of the three scores
     m=ms[scores==min(scores)] 
   }
 
-  for (offset in 0.1^(1:4)) {
+  for (offset in 10^-(1:4)) {
     scores=c(0, 1, 0)
-    while (scores(2) > min(scores)) {
+    while (scores[2] > min(scores)) {
       ms=c(m-offset, m, m+offset)
-      scores=sapply(1:3, function(x) scoreData(data,ms(x)))
+      scores=sapply(1:3, function(x) scoreData(data,ms[x]))
       m=ms[scores==min(scores)];
     }
   }
